@@ -1,11 +1,13 @@
 const express = require("express");
-const path = require("path"); // 1. On importe l'outil "path" (chemin)
-
+const path = require("path");
 const app = express();
 
+// --- LIGNE À AJOUTER ---
+// Cela dit à Express : "Sers tous les fichiers statiques (CSS, images) qui sont dans le dossier actuel"
+app.use(express.static(__dirname));
+// -----------------------
+
 app.get("/", (req, res) => {
-  // 2. Au lieu d'envoyer du texte, on envoie le fichier
-  // __dirname veut dire "le dossier où je suis actuellement"
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
